@@ -293,7 +293,7 @@ module Paperclip
     # the post-process again.
 
     def reprocess!(*style_args)
-      new_original = Tempfile.new(["paperclip-reprocess", '.jpg'])
+      new_original = Tempfile.new(["paperclip-reprocess", ".#{content_type}"])
       new_original.binmode
       if old_original = data(:original)
         new_original << old_original
