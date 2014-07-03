@@ -293,7 +293,8 @@ module Paperclip
     # the post-process again.
 
     def reprocess!(*style_args)
-      new_original = Tempfile.new(["paperclip-reprocess", ".#{content_type}"])
+      file_type = original_filename.split(".").last
+      new_original = Tempfile.new(["paperclip-reprocess", ".#{file_type}"])
       new_original.binmode
       if old_original = data(:original)
         new_original << old_original
@@ -306,7 +307,7 @@ module Paperclip
 
         save_styles_to_db
       end
-    end 
+    end
     # def reprocess!(*style_args)
     #   saved_only_process, @options[:only_process] = @options[:only_process], style_args
     #   begin
