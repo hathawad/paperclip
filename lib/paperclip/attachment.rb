@@ -293,10 +293,11 @@ module Paperclip
     # the post-process again.
 
     def reprocess!(*style_args)
-      file_type = original_filename.split(".").last
-      new_original = Tempfile.new(["paperclip-reprocess", ".#{file_type}"])
-      new_original.binmode
       if old_original = data(:original)
+        file_type = original_filename.split(".").last
+        new_original = Tempfile.new(["paperclip-reprocess", ".#{file_type}"])
+        new_original.binmode
+
         new_original << old_original
         new_original.rewind
 
